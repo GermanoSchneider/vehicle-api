@@ -1,7 +1,7 @@
 import VehicleDto from "./vehicle.dto";
 import VehicleRepository from "./vehicle.repository";
 
-export default class GetAllCar {
+export default class GetAllVehicles {
 
     repository: VehicleRepository;
 
