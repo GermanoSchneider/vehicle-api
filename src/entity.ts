@@ -3,5 +3,4 @@ export default abstract class Entity<T> {
     constructor(props: T) {
         this.data = props;
     }
-
 }

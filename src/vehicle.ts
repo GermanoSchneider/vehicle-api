@@ -1,9 +1,6 @@
-import { is } from "@babel/types";
-import Car from "./car";
 import Entity from "./entity";
 import Plate from "./plate";
-import VehicleDto from "./vehicle.dto";
-import VehicleMapper from "./vehicle.mapper";
+
 
 type VehicleProps = {
     brand: string;
@@ -13,7 +10,7 @@ type VehicleProps = {
     color: string;
 }
 
-export default abstract class Vehicle extends Entity<VehicleProps> {
+export default class Vehicle extends Entity<VehicleProps> {
 
     plate: Plate;
 
@@ -27,6 +24,5 @@ export default abstract class Vehicle extends Entity<VehicleProps> {
     validate(): void {
         if (!this.hasValidYear) throw new Error('Invalid Year!')
     }
-
 
 }

@@ -1,4 +1,4 @@
-import Vehicle from "./vehicle";
+import Mapper from "./mapper";
 import VehicleDto from "./vehicle.dto";
 import VehicleRepository from "./vehicle.repository";
 
@@ -11,7 +11,7 @@ export default class RemoveVehicle {
     }
 
     async execute(data: VehicleDto): Promise<void> { 
-        const vehicle = Vehicle.fromDTO(data);
+        const vehicle = Mapper.fromDTO(data);
         await this.repository.remove(vehicle.plate)
     }
 

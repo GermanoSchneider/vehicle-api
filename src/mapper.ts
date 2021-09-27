@@ -1,8 +1,29 @@
-export default abstract class Mapper<T> {
-    readonly data: T;
-    constructor(data: T) {
-        this.data = data;
+import Vehicle from "./vehicle";
+import VehicleDto from "./vehicle.dto";
+
+export default abstract class Mapper {
+
+    static toDTO(vehicle: Vehicle): VehicleDto {
+        return {
+            marca: vehicle.data.brand,
+            modelo: vehicle.data.model,
+            ano: vehicle.data.year,
+            cor: vehicle.data.color,
+            valor: vehicle.data.price
+        }
     }
-    abstract toDTO(): any;
-    abstract fromDTO(dto: any): T;
+
+    static fromDTO(dto: VehicleDto): Vehicle {
+        return new Vehicle({
+            data: {
+                brand: dto.marca,
+                model: dto.modelo,
+                year: dto.ano,
+                color: dto.cor,
+                price: dto.valor
+            }
+        });
+    }
+
+
 }

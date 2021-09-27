@@ -1,4 +1,4 @@
-import Vehicle from "./vehicle";
+import Mapper from "./mapper";
 import VehicleDto from "./vehicle.dto";
 import VehicleRepository from "./vehicle.repository";
 
@@ -11,8 +11,9 @@ export default class GetVehicle {
     }
 
     async execute(data: VehicleDto): Promise<VehicleDto> {
-        const vehicle = Vehicle.fromDTO(data);
-        return (await this.repository.find(vehicle.plate)).toDTO();
+        const vehicle = Mapper.fromDTO(data);
+        const find = (await this.repository.find(vehicle.plate));
+        return Mapper.toDTO(find);
     }
 
 }

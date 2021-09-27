@@ -1,3 +1,4 @@
+import Mapper from "./mapper";
 import VehicleDto from "./vehicle.dto";
 import VehicleRepository from "./vehicle.repository";
 
@@ -11,7 +12,7 @@ export default class GetAllVehicles {
 
     async execute(): Promise<VehicleDto[]> {
         const getAll = await this.repository.findAll();
-        return Array.from(getAll.map(vehicle => vehicle.toDTO()))
+        return Array.from(getAll.map(vehicle => Mapper.toDTO(vehicle)))
     }
 
 }
