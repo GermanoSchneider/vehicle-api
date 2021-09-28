@@ -2,6 +2,7 @@
 import Plate from "../domain/plate";
 import Vehicle from "../domain/vehicle";
 import VehicleRepository from "../domain/repositories/vehicle.repository";
+import NoContent from "../presentation/exceptions/no.content";
 
 export default class VehicleMemoryRepository implements VehicleRepository {
 
@@ -12,48 +13,28 @@ export default class VehicleMemoryRepository implements VehicleRepository {
     }
 
     async create(data: Vehicle): Promise<Vehicle> {
-        try {
-            await this.vehicles.push(data);
-            return data;
-        } catch (error) {
-            throw error;
-        }
+        await this.vehicles.push(data);
+        return data;
     }
 
-    async exists(vehicle: Vehicle): Promise<boolean> {
-        try {
-            return this.vehicles.includes(vehicle);
-        } catch (error) {
-            throw error;
-        }
+    async exists(plate: Plate): Promise<boolean> {
+        return this.vehicles.some(vehicle => vehicle.data.plate.value === plate.value)
     }
 
     async findAll(): Promise<Vehicle[]> {
-        try {
-            return this.vehicles;
-        } catch (error) {
-            throw error;
-        }
+        return this.vehicles;
     }
 
     async find(plate: Plate): Promise<Vehicle> {
-        try {
-            const find = this.vehicles.find(vehicle => vehicle.data.plate.value == plate.value);
-            if (!find) throw new Error('Unregistered Vehicle!')
-            return find;
-        } catch (error) {
-            throw error;
-        }
+        const find = this.vehicles.find(vehicle => vehicle.data.plate.value === plate.value);
+        if (!find) throw new NoContent('Registro não encontrado')
+        return find;
     }
 
     async remove(plate: Plate): Promise<void> {
-        try {
-            const index = this.vehicles.findIndex(vehicle => vehicle.data.plate.value == plate.value);
-            if(index == undefined) throw new Error('Invalid Vehicle!');
-            this.vehicles.splice(index, 1);
-        } catch (error) {
-            throw error;
-        }
+        const index = this.vehicles.findIndex(vehicle => vehicle.data.plate.value == plate.value);
+        if (!index) throw new NoContent('Registro não cadastrado!');
+        this.vehicles.splice(index, 1);
     }
 
 

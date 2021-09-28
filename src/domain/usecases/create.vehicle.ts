@@ -13,7 +13,7 @@ export default class CreateVehicle {
 
     async execute(data: VehicleDto): Promise<VehicleDto> {
         const vehicle = VehicleMapper.fromDTO(data);
-        if(await this.repository.exists(vehicle)) throw new BadRequest(`${vehicle.data.model} already exist!`)
+        if(await this.repository.exists(vehicle.data.plate)) throw new BadRequest(`O veículo ${vehicle.data.brand} ${vehicle.data.model} já existe!`)
         const create = await this.repository.create(vehicle);
         return VehicleMapper.toDTO(create);  
     }

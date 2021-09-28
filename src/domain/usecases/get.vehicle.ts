@@ -13,7 +13,7 @@ export default class GetVehicle {
     }
 
     async execute(plate: Plate): Promise<VehicleDto> {
-        const find = (await this.repository.find(plate));
+        const find = await this.repository.find(plate);
         return VehicleMapper.toDTO(find);
     }
 
