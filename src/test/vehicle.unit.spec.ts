@@ -1,9 +1,10 @@
-import Vehicle from "./vehicle";
+import Car from "../domain/car";
+import Vehicle from "../domain/vehicle";
 
 let vehicle: Vehicle;
 
 beforeAll(() => {
-    vehicle = new Vehicle({data: {brand: 'Audi', model: 'A3', year: 2021, color: 'red', price: 60000 }});
+    vehicle = new Car({brand: 'Audi', model: 'A3', year: 2021, color: 'red', price: 60000 });
 })
 
 describe('Unit Test Vehicle', () => {

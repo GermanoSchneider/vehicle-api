@@ -1,5 +1,6 @@
-import Server from "./server";
+import Server from "../domain/server";
 import express from 'express';
+import ErrorHandler from "../presentation/error.handler";
 
 export default class ExpressServer implements Server {
     app: any;
@@ -19,13 +20,21 @@ export default class ExpressServer implements Server {
     }
 
     async on({ method, url, fn }: { method: string; url: string; fn: any; }): Promise<void> {
-        this.app[method](this.convertUrl(url), async (req: any, res: any) => {
-            const data = await fn(req.params, res.body)
-            return res.json(data);
+        this.app[method](this.convertUrl(url), async (req: any, res: any, next: any) => {
+            try {
+                const data = await fn(req.params, req.body)
+                return res.json(data);
+            } catch (error: unknown) {
+                if (error instanceof ErrorHandler) {
+                    res.status(error.code)
+                    res.send(error.message)
+                }
+                next(error);
+            }
         })
     }
 
-    async listen({port}: {port: number}) {
+    async listen({ port }: { port: number }) {
         this.app.listen(port);
     }
 

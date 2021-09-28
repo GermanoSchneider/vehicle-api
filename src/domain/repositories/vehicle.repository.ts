@@ -1,5 +1,5 @@
-import Plate from "./plate";
-import Vehicle from "./vehicle";
+import Plate from "../plate";
+import Vehicle from "../vehicle";
 
 export default interface VehicleRepository {
     create(data: Vehicle): Promise<Vehicle>

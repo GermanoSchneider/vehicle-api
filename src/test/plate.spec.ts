@@ -1,4 +1,4 @@
-import Plate from "./plate"
+import Plate from "../domain/plate"
 
 describe('Unit Test Plate', () => {
     test('should be create a valid plate', () => {
