@@ -26,7 +26,7 @@ export default class RoutesConfig {
             return await new CreateVehicle({repository: this.repository}).execute(body).catch(error => { throw error });
         }});
         this.server.on({method: 'delete', url: '/${plate}', fn: async (params: any, body: any) => {
-            return await new RemoveVehicle({repository: this.repository}).execute(params.plate).catch(error =>  { throw error });
+            return await new RemoveVehicle({repository: this.repository}).execute(new Plate(params.plate)).catch(error =>  { throw error });
         }});
     }
 

@@ -33,7 +33,7 @@ export default class VehicleMemoryRepository implements VehicleRepository {
 
     async remove(plate: Plate): Promise<void> {
         const index = this.vehicles.findIndex(vehicle => vehicle.data.plate.value == plate.value);
-        if (!index) throw new NoContent('Registro não cadastrado!');
+        if (index === undefined) throw new NoContent('Registro não cadastrado!');
         this.vehicles.splice(index, 1);
     }
 
