@@ -12,16 +12,35 @@ npm install
 
 ```python
 # Criar um veículo
-POST | http://localhost:8080/
+POST | http://localhost:8080
+# Body: { marca: string, modelo: string, ano: number, cor: string, valor: number, id_categoria: number }
+# Categoria: 1 = Carro, 2 = Motocicleta
+```
 
+```python
 # Retornar um veículo específico
-GET | http://localhost:8080/${placa}
+GET | http://localhost:8080/${placa} 
+# Exemplo do parâmetro: IAX8X00
 
 # Retorna todos os veículos
-GET | http://localhost:8080/
+GET | http://localhost:8080
+```
 
+```python
 # Remove um veículo
 DELETE | http://localhost:8080/${plate}
+```
+
+
+
+## Executar
+Executa os testes
+```bash
+npm install
+```
+Executa a API
+```bash
+npm run main
 ```
 
 ## License

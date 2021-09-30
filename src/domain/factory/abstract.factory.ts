@@ -1,7 +1,8 @@
 import Car from "../car";
+import { VehicleDtoInput } from "../dto/vehicle.dto";
 import Motocycle from "../motocycle";
 
 export default interface AbstractFactory {
-  createCar(): Car;
-  createMotocycle(): Motocycle;
+  createCar(input: VehicleDtoInput): Car;
+  createMotocycle(input: VehicleDtoInput): Motocycle;
 }

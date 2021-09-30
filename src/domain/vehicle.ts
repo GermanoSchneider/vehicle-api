@@ -1,5 +1,5 @@
 import Category from "./category";
-import Entity from "../app/entity";
+import Entity from "../core/entity";
 import Plate from "./plate";
 import BadRequest from "../presentation/exceptions/bad.request";
 

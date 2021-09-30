@@ -1,43 +1,29 @@
 import AbstractFactory from "./abstract.factory";
 import Car from "../car";
 import Motocycle from "../motocycle";
-import Vehicle from "../vehicle";
-import VehicleDto from "../dto/vehicle.dto";
-import { CategoryType } from "../category";
-import BadRequest from "../../presentation/exceptions/bad.request";
+import { VehicleDtoInput } from "../dto/vehicle.dto";
 
 export default class VehicleFactory implements AbstractFactory {
 
-    dto: VehicleDto;
 
-    constructor(dto: VehicleDto) {
-        this.dto = dto;
-    }
-
-    createCar(): Car {
+    createCar(input: VehicleDtoInput): Car {
         return new Car({
-            brand: this.dto.marca,
-            model: this.dto.modelo,
-            year: this.dto.ano,
-            color: this.dto.cor,
-            price: this.dto.valor
+            brand: input.marca,
+            model: input.modelo,
+            year: input.ano,
+            color: input.cor,
+            price: input.valor
         })
     }
 
-    createMotocycle(): Motocycle {
+    createMotocycle(input: VehicleDtoInput): Motocycle {
         return new Motocycle({
-            brand: this.dto.marca,
-            model: this.dto.modelo,
-            year: this.dto.ano,
-            color: this.dto.cor,
-            price: this.dto.valor
+            brand: input.marca,
+            model: input.modelo,
+            year: input.ano,
+            color: input.cor,
+            price: input.valor
         })
-    }
-
-    create(): Vehicle {
-        if (this.dto.categoria.id == CategoryType.Car) return this.createCar();
-        if (this.dto.categoria.id == CategoryType.Motocycle) return this.createMotocycle();
-        throw new BadRequest('Dados inválidos!')
     }
 
 }

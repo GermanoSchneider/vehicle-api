@@ -1,6 +1,4 @@
-import VehicleDto from "../dto/vehicle.dto";
 import VehicleRepository from "../repositories/vehicle.repository";
-import VehicleMapper from "../mappers/vehicle.mapper";
 import Plate from "../plate";
 
 

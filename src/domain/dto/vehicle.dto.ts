@@ -1,11 +1,21 @@
-import Category from "../category";
+export type VehicleDto = VehicleDtOOutput | VehicleDtoInput;
 
-export default interface VehicleDto {
+export interface VehicleDtoInput {
+    marca: string
+    modelo: string
+    ano: number
+    cor: string
+    valor: number
+    id_categoria: number
+}
+
+export interface VehicleDtOOutput {
     placa: string
     marca: string
     modelo: string
     ano: number
     cor: string
     valor: number
-    categoria: Category
+    categoria: string
 }
+
