@@ -22,7 +22,7 @@ export default class VehicleMapper implements Mapper<Vehicle, VehicleDto> {
             ano: vehicle.data.year,
             cor: vehicle.data.color,
             valor: vehicle.data.price,
-            categoria: vehicle.data.category.getName,
+            categoria: vehicle.data.category
         }
     }
 

@@ -1,3 +1,5 @@
+import Category from "../category";
+
 export type VehicleDto = VehicleDtOOutput | VehicleDtoInput;
 
 export interface VehicleDtoInput {
@@ -16,6 +18,6 @@ export interface VehicleDtOOutput {
     ano: number
     cor: string
     valor: number
-    categoria: string
+    categoria: Category
 }
 
