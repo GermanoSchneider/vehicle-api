@@ -36,7 +36,7 @@ DELETE | http://localhost:8080/${plate}
 ## Executar
 Executa os testes
 ```bash
-npm install
+npm run test
 ```
 Executa a API
 ```bash
